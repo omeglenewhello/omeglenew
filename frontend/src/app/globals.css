@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+    'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1d1d1f;
+  background: #fff;
+}
+
+/* ── Chat scrollbar ───────────────────────────────────────────────────────── */
+.chat-messages::-webkit-scrollbar       { width: 4px; }
+.chat-messages::-webkit-scrollbar-track { background: #f5f5f7; }
+.chat-messages::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 2px; }
+.chat-messages::-webkit-scrollbar-thumb:hover { background: #818cf8; }
+
+/* ── Typing dots ──────────────────────────────────────────────────────────── */
+.typing-dot:nth-child(1) { animation: bounceDot 1.2s infinite ease-in-out 0s; }
+.typing-dot:nth-child(2) { animation: bounceDot 1.2s infinite ease-in-out 0.2s; }
+.typing-dot:nth-child(3) { animation: bounceDot 1.2s infinite ease-in-out 0.4s; }
+
+@keyframes bounceDot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Mobile viewport height fix ───────────────────────────────────────────── */
+.h-screen-mobile { height: 100dvh; }
+
+/* ── Focus styles ─────────────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Message bubble animation ─────────────────────────────────────────────── */
+.message-bubble {
+  animation: slideUp 0.2s ease-out;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Apple-style hero ─────────────────────────────────────────────────────── */
+.apple-hero {
+  background: #000;
+}
+
+/* Hero headline gradient text */
+.hero-gradient-text {
+  background: linear-gradient(180deg, #fff 60%, rgba(255,255,255,0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Accent gradient (the colorful word) */
+.hero-accent-text {
+  background: linear-gradient(135deg, #0071e3 0%, #b042ff 50%, #ff375f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Apple CTA buttons ────────────────────────────────────────────────────── */
+.btn-apple-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  background: #0071e3;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  border-radius: 980px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+.btn-apple-primary:hover { background: #0077ed; }
+.btn-apple-primary:active { background: #004f9e; }
+
+.btn-apple-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 24px;
+  background: transparent;
+  color: #0071e3;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  border-radius: 980px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.btn-apple-ghost:hover {
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+}
+
+/* ── Bento card ───────────────────────────────────────────────────────────── */
+.bento-card {
+  background: #1d1d1f;
+  border-radius: 24px;
+  padding: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Next confirm timer bar ───────────────────────────────────────────────── */
+@keyframes shrinkBar {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+
+/* ── Section divider ──────────────────────────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: #d2d2d7;
+  margin: 0;
+}
+
+/* ── AdSense ──────────────────────────────────────────────────────────────── */
+.ad-container {
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f7;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ── FAQ accordion ────────────────────────────────────────────────────────── */
+details summary::-webkit-details-marker { display: none; }
+
+/* ── Smooth scroll offset for anchor links ────────────────────────────────── */
+[id] { scroll-margin-top: 80px; }

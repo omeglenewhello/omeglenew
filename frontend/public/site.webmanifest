@@ -1,0 +1,16 @@
+{
+  "name": "OmegleNew",
+  "short_name": "OmegleNew",
+  "description": "Free anonymous text chat with strangers. The best Omegle alternative.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
