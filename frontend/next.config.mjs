@@ -3,6 +3,18 @@ const nextConfig = {
   // Enable strict mode for better React dev warnings
   reactStrictMode: true,
 
+  // Force HTTPS redirect
+  async redirects() {
+    return [
+      {
+        source: '/(.*)',
+        has: [{ type: 'header', key: 'x-forwarded-proto', value: 'http' }],
+        destination: 'https://omeglenew.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   // Security headers
   async headers() {
     return [
