@@ -15,6 +15,13 @@ const PORT = process.env.PORT || 3001;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
+const ALLOWED_ORIGINS = [
+  FRONTEND_URL,
+  'https://omeglenew.com',
+  'https://www.omeglenew.com',
+  'http://localhost:3000',
+];
+
 // ── Security Middleware ───────────────────────────────────────────────────────
 app.use(
   helmet({
@@ -24,7 +31,7 @@ app.use(
 
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: ALLOWED_ORIGINS,
     methods: ['GET', 'POST'],
     credentials: true,
   })
@@ -54,7 +61,7 @@ app.get('/api/stats', (_req, res) => {
 // ── Socket.IO ─────────────────────────────────────────────────────────────────
 const io = new Server(server, {
   cors: {
-    origin: FRONTEND_URL,
+    origin: ALLOWED_ORIGINS,
     methods: ['GET', 'POST'],
     credentials: true,
   },
