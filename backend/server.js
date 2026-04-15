@@ -43,11 +43,12 @@ app.use(express.json({ limit: '10kb' }));
 // ── Rate Limiting (HTTP) ──────────────────────────────────────────────────────
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 200,
+  max: 500,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many requests. Please try again later.' },
 });
+
 app.use('/api', apiLimiter);
 
 // ── HTTP Routes ───────────────────────────────────────────────────────────────
@@ -66,13 +67,19 @@ const io = new Server(server, {
     methods: ['GET', 'POST'],
     credentials: true,
   },
-  pingTimeout: 60_000,
+  pingTimeout: 120_000,
   pingInterval: 25_000,
+  upgradeTimeout: 30_000,
   maxHttpBufferSize: 1e4, // 10 KB max payload
-  transports: ['websocket', 'polling'],
+  transports: ['polling', 'websocket'],
 });
 
 setupSocketHandlers(io);
+
+// ── Broadcast stats every 10s via Socket.IO ───────────────────────────────────
+setInterval(() => {
+  io.emit('stats', queue.getStats());
+}, 10_000);
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 server.listen(PORT, () => {
