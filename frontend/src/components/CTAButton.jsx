@@ -1,10 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 export default function CTAButton({ children, className = '' }) {
+  const router = useRouter();
+
   const handleClick = () => {
     const btn = document.getElementById('start-chat-btn');
     if (btn) btn.click();
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
+    else router.push('/?start=1');
   };
 
   return (

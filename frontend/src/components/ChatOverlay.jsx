@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useRouter } from 'next/navigation';
 import AgeGate from './AgeGate';
 import ChatInterface from './ChatInterface';
 
@@ -12,13 +13,25 @@ export default function ChatOverlay() {
   const [chatActive, setChatActive]     = useState(false);
   const [chatKey, setChatKey]           = useState(0);
   const [mounted, setMounted]           = useState(false);
+  const router = useRouter();
 
   // Only render portals after mount (no SSR)
   useEffect(() => {
     setMounted(true);
     try {
       const verified = localStorage.getItem(AGE_GATE_KEY) === 'true';
+      const autoStart = new URLSearchParams(window.location.search).get('start') === '1';
       setAgeVerified(verified);
+      if (autoStart) {
+        // Clean the URL then open chat
+        router.replace('/', { scroll: false });
+        if (verified) {
+          setChatKey((k) => k + 1);
+          setChatActive(true);
+        } else {
+          setShowAgeGate(true);
+        }
+      }
     } catch {}
   }, []);
 

@@ -296,8 +296,8 @@ export default function ChatInterface({ onExit }) {
               disabled={status !== 'connected'}
               rows={1}
               maxLength={MAX_MSG_LENGTH}
-              className="flex-1 px-3 py-2.5 text-sm text-gray-900 bg-white border border-gray-200 rounded-xl resize-none focus:outline-none focus:border-brand-400 focus:ring-1 focus:ring-brand-300 disabled:bg-gray-50 disabled:text-gray-400 max-h-32 overflow-y-auto"
-              style={{ lineHeight: '1.5' }}
+              className="flex-1 px-3 py-2.5 text-gray-900 bg-white border border-gray-200 rounded-xl resize-none focus:outline-none focus:border-brand-400 focus:ring-1 focus:ring-brand-300 disabled:bg-gray-50 disabled:text-gray-400 max-h-32 overflow-y-auto"
+              style={{ lineHeight: '1.5', fontSize: '16px' }}
             />
             <button
               onClick={handleSend}
