@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useSocket } from '@/hooks/useSocket';
 import ReportModal from './ReportModal';
+import AdBanner from './AdBanner';
 
 const INTERESTS_OPTIONS = [
   'Music', 'Movies', 'Gaming', 'Sports', 'Travel',
@@ -160,9 +161,18 @@ export default function ChatInterface({ onExit }) {
         <div className="flex-1 overflow-y-auto flex items-center justify-center p-4">
           <div className="w-full max-w-md">
             {status === 'stranger_left' && (
-              <div className="mb-6 bg-red-50 border border-red-200 rounded-xl p-4 text-center">
-                <p className="text-red-600 font-medium text-sm">Stranger disconnected.</p>
-                <p className="text-red-500 text-xs mt-1">Find a new person below.</p>
+              <div className="mb-6">
+                <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-center mb-3">
+                  <p className="text-red-600 font-medium text-sm">Stranger disconnected.</p>
+                  <p className="text-red-500 text-xs mt-1">Find a new person below.</p>
+                </div>
+                {/* Ad shown between chats — high dwell time spot */}
+                <AdBanner
+                  slot="5839201746"
+                  format="auto"
+                  responsive={true}
+                  className="w-full rounded-xl overflow-hidden"
+                />
               </div>
             )}
 
@@ -246,6 +256,16 @@ export default function ChatInterface({ onExit }) {
                 Start Chatting
               </button>
             </div>
+
+            {/* Ad below setup card — visible before chat starts */}
+            <div className="mt-4 w-full">
+              <AdBanner
+                slot="2948371650"
+                format="auto"
+                responsive={true}
+                className="w-full rounded-xl overflow-hidden"
+              />
+            </div>
           </div>
         </div>
       ) : (
@@ -271,10 +291,17 @@ export default function ChatInterface({ onExit }) {
         </div>
       )}
 
-      {/* ── Ad Banner (between messages and input) ────────────────────────── */}
-      {/* Uncomment and add your slot ID when AdSense is approved:
-      <AdBanner slot="YOUR_SLOT_ID" className="mx-4 my-1" />
-      */}
+      {/* ── Ad Banner — sticky above input, visible during search + chat ── */}
+      {!isIdle && (
+        <div className="flex-shrink-0 bg-white border-t border-gray-100 px-3 py-1.5">
+          <AdBanner
+            slot="7361048295"
+            format="auto"
+            responsive={true}
+            className="w-full"
+          />
+        </div>
+      )}
 
       {/* ── Bottom Input Area ─────────────────────────────────────────────── */}
       {!isIdle && (
