@@ -1,8 +1,7 @@
 import './globals.css';
 
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || 'OmegleNew';
-const SITE_URL  = process.env.NEXT_PUBLIC_SITE_URL  || 'https://omeglenew.com';
-const ADSENSE_ID = process.env.NEXT_PUBLIC_ADSENSE_ID || '';
+
+const SITE_URL  = process.env.NEXT_PUBLIC_SITE_URL  || 'https://omeglenew.com';const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || 'OmegleNew';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -323,13 +322,11 @@ export default function RootLayout({ children }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }} />
 
         {/* Google AdSense */}
-        {ADSENSE_ID && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9621487106450027"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="bg-white text-gray-900 antialiased">{children}</body>
 
