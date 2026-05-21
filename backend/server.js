@@ -73,9 +73,28 @@ app.post('/api/log-bot-chat', (req, res) => {
   res.json({ ok: true });
 });
 
-// ── Admin Dashboard ───────────────────────────────────────────────────────────
+// ── Admin JSON API ────────────────────────────────────────────────────────────
 const ADMIN_KEY = process.env.ADMIN_KEY || 'changeme123';
 const ADMIN_COOKIE = 'admin_auth';
+
+function adminApiAuth(req, res, next) {
+  const key = req.headers['x-admin-key'];
+  if (key && key === ADMIN_KEY) return next();
+  res.status(401).json({ error: 'Unauthorized' });
+}
+
+app.get('/api/admin/chats', adminApiAuth, (req, res) => {
+  const limit = Math.min(parseInt(req.query.limit) || 50, 500);
+  const offset = parseInt(req.query.offset) || 0;
+  const sessions = chatStore.getSessions({ limit, offset });
+  const stats = chatStore.getStats();
+  res.json({ sessions, stats });
+});
+
+app.get('/api/admin/chats/:sessionId', adminApiAuth, (req, res) => {
+  const messages = chatStore.getSessionMessages(req.params.sessionId);
+  res.json({ messages });
+});
 
 app.use(express.urlencoded({ extended: false }));
 
