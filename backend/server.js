@@ -7,6 +7,8 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { setupSocketHandlers } = require('./src/socketHandlers');
 const queue = require('./src/queue');
+const chatStore = require('./src/chatStore');
+const { renderDashboard, renderSession, renderLogin } = require('./src/adminDashboard');
 
 const app = express();
 app.set('trust proxy', 1);
@@ -58,6 +60,53 @@ app.get('/health', (_req, res) => {
 
 app.get('/api/stats', (_req, res) => {
   res.json(queue.getStats());
+});
+
+// ── Bot Chat Logger ───────────────────────────────────────────────────────────
+app.post('/api/log-bot-chat', (req, res) => {
+  const { sessionId, startedAt, endedAt, messages } = req.body || {};
+  if (!sessionId || !Array.isArray(messages)) {
+    return res.status(400).json({ error: 'invalid payload' });
+  }
+  const ipA = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  chatStore.logBotSession({ sessionId, startedAt, endedAt, ipA, messages });
+  res.json({ ok: true });
+});
+
+// ── Admin Dashboard ───────────────────────────────────────────────────────────
+const ADMIN_KEY = process.env.ADMIN_KEY || 'changeme123';
+const ADMIN_COOKIE = 'admin_auth';
+
+app.use(express.urlencoded({ extended: false }));
+
+function adminAuth(req, res, next) {
+  const cookie = req.headers.cookie || '';
+  const token = cookie.split(';').find(c => c.trim().startsWith(ADMIN_COOKIE + '='));
+  if (token && token.split('=')[1].trim() === ADMIN_KEY) return next();
+  res.redirect('/admin/login');
+}
+
+app.get('/admin/login', (_req, res) => {
+  res.send(renderLogin(false));
+});
+
+app.post('/admin/login', (req, res) => {
+  if (req.body.password === ADMIN_KEY) {
+    res.setHeader('Set-Cookie', `${ADMIN_COOKIE}=${ADMIN_KEY}; Path=/admin; HttpOnly`);
+    return res.redirect('/admin');
+  }
+  res.send(renderLogin(true));
+});
+
+app.get('/admin', adminAuth, (_req, res) => {
+  const sessions = chatStore.getSessions({ limit: 100 });
+  const stats    = chatStore.getStats();
+  res.send(renderDashboard(sessions, stats));
+});
+
+app.get('/admin/chats/:sessionId', adminAuth, (req, res) => {
+  const messages = chatStore.getSessionMessages(req.params.sessionId);
+  res.send(renderSession(req.params.sessionId, messages));
 });
 
 // ── Socket.IO ─────────────────────────────────────────────────────────────────

@@ -1,5 +1,6 @@
 const queue = require('./queue');
 const { filterMessage, containsBannedContent } = require('./profanityFilter');
+const chatStore = require('./chatStore');
 
 const MAX_MESSAGE_LENGTH = 500;
 const RATE_LIMIT_MESSAGES = 12; // per window
@@ -49,6 +50,10 @@ function setupSocketHandlers(io) {
         socket.emit('matched', { roomId, commonInterests: common });
         partner.socket.emit('matched', { roomId, commonInterests: common });
 
+        const ipA = socket.handshake.address;
+        const ipB = partner.socket.handshake.address;
+        chatStore.startSession(roomId, ipA, ipB);
+
         console.log(`[matched]  ${socket.id} <-> ${partner.socketId}  room=${roomId}`);
       } else {
         queue.addToQueue(socket, safeInterests);
@@ -78,6 +83,8 @@ function setupSocketHandlers(io) {
       const partnerId = queue.getPartner(socket.id);
 
       if (partnerId) {
+        const roomId = queue.getRoomId(socket.id);
+        if (roomId) chatStore.logMessage(roomId, socket.id, filtered);
         io.to(partnerId).emit('message', {
           text: filtered,
           timestamp: Date.now(),
@@ -95,6 +102,8 @@ function setupSocketHandlers(io) {
 
     // ── Next (skip to new stranger) ────────────────────────────────────────────
     socket.on('next', ({ interests = [] } = {}) => {
+      const roomId = queue.getRoomId(socket.id);
+      if (roomId) chatStore.endSession(roomId);
       const partnerId = queue.cleanup(socket.id);
       if (partnerId) {
         io.to(partnerId).emit('stranger_disconnected');
@@ -116,6 +125,7 @@ function setupSocketHandlers(io) {
           newPartner.interests.map((x) => x.toLowerCase()).includes(i.toLowerCase())
         );
 
+        chatStore.startSession(roomId, socket.handshake.address, newPartner.socket.handshake.address);
         socket.emit('matched', { roomId, commonInterests: common });
         newPartner.socket.emit('matched', { roomId, commonInterests: common });
 
@@ -129,6 +139,8 @@ function setupSocketHandlers(io) {
 
     // ── Stop Chat ──────────────────────────────────────────────────────────────
     socket.on('stop', () => {
+      const roomId = queue.getRoomId(socket.id);
+      if (roomId) chatStore.endSession(roomId);
       const partnerId = queue.cleanup(socket.id);
       if (partnerId) {
         io.to(partnerId).emit('stranger_disconnected');
@@ -149,6 +161,8 @@ function setupSocketHandlers(io) {
     // ── Disconnect ─────────────────────────────────────────────────────────────
     socket.on('disconnect', (reason) => {
       console.log(`[disconnect] ${socket.id}  reason=${reason}`);
+      const roomId = queue.getRoomId(socket.id);
+      if (roomId) chatStore.endSession(roomId);
       const partnerId = queue.cleanup(socket.id);
       if (partnerId) {
         io.to(partnerId).emit('stranger_disconnected');
