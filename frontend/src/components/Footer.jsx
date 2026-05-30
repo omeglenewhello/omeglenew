@@ -25,13 +25,14 @@ export default function Footer() {
               <li><Link href="/terms" className="hover:text-white/70 transition-colors">Terms of Service</Link></li>
               <li><Link href="/privacy" className="hover:text-white/70 transition-colors">Privacy Policy</Link></li>
               <li><Link href="/guidelines" className="hover:text-white/70 transition-colors">Community Guidelines</Link></li>
+              <li><Link href="/contact" className="hover:text-white/70 transition-colors">Contact Us</Link></li>
             </ul>
           </div>
           <div>
             <p className="text-white/60 font-semibold mb-3">Safety</p>
             <ul className="space-y-2">
               <li className="flex items-center gap-1.5"><span className="text-green-400 text-xs">●</span> Anonymous</li>
-              <li className="flex items-center gap-1.5"><span className="text-green-400 text-xs">●</span> No Data Stored</li>
+              <li className="flex items-center gap-1.5"><span className="text-green-400 text-xs">●</span> Safe & Secure</li>
               <li className="flex items-center gap-1.5"><span className="text-green-400 text-xs">●</span> 24/7 Moderation</li>
               <li className="flex items-center gap-1.5"><span className="text-green-400 text-xs">●</span> Report System</li>
             </ul>
@@ -52,7 +53,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-[12px]">
             <p>Copyright © {year} {SITE_NAME}. All rights reserved.</p>
             <p className="text-white/25 max-w-sm text-right">
-              By using {SITE_NAME} you confirm you are 18 or older and agree to our{' '}
+              By using {SITE_NAME} you agree to our{' '}
               <Link href="/terms" className="underline hover:text-white/50">Terms</Link> and{' '}
               <Link href="/guidelines" className="underline hover:text-white/50">Community Guidelines</Link>.
             </p>

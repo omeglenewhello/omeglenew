@@ -17,9 +17,9 @@ export default function TermsPage() {
         'By accessing or using OmegleNew, you confirm that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree, do not use this service.',
     },
     {
-      title: '2. Age Requirement — 18+ ONLY',
+      title: '2. Age Requirement',
       content:
-        'OmegleNew is strictly for users who are 18 years of age or older. Minors are prohibited under any circumstances. By using OmegleNew, you represent and warrant that you are at least 18 years old. We reserve the right to terminate accounts of suspected minors immediately.',
+        'OmegleNew is intended for users who are 13 years of age or older. Users under 18 must have parental consent. By using OmegleNew, you confirm you meet the applicable age requirement. We reserve the right to terminate access for users who misrepresent their age.',
     },
     {
       title: '3. Prohibited Conduct',
@@ -34,7 +34,7 @@ export default function TermsPage() {
     {
       title: '5. Privacy',
       content:
-        'OmegleNew does not require registration or personal information to use. Chat messages are not stored on our servers. However, your IP address and approximate geolocation may be logged for security and legal compliance purposes.',
+        'OmegleNew does not require registration or personal information to use. Session data including chat messages may be stored for safety and moderation purposes. Your IP address may be logged for security and legal compliance. See our Privacy Policy for full details.',
     },
     {
       title: '6. Enforcement',
@@ -72,12 +72,12 @@ export default function TermsPage() {
             ← Back to OmegleNew
           </Link>
           <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Terms of Service</h1>
-          <p className="text-gray-500 text-sm">Last updated: January 2026</p>
+          <p className="text-gray-500 text-sm">Last updated: May 2026</p>
         </div>
 
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-8">
-          <p className="text-red-700 font-semibold text-sm">
-            ⚠ OmegleNew is strictly 18+ only. Minors are prohibited from using this platform.
+        <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-8">
+          <p className="text-yellow-700 font-semibold text-sm">
+            Please read these terms carefully before using OmegleNew. Use of this service means you accept these terms.
           </p>
         </div>
 

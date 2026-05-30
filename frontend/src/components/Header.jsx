@@ -49,6 +49,14 @@ export default function Header() {
                 Privacy
               </Link>
             </li>
+            <li>
+              <Link
+                href="/contact"
+                className="px-3 py-1.5 rounded-lg hover:text-gray-900 transition-colors"
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

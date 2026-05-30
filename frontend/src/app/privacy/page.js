@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Privacy Policy - OmegleNew | Anonymous Chat',
-  description: 'OmegleNew Privacy Policy. We do not store your chats or personal data. Your anonymous stranger chat sessions are private and secure.',
+  description: 'OmegleNew Privacy Policy. Learn how we handle data, cookies, and your privacy when using our anonymous stranger chat platform.',
   alternates: { canonical: 'https://omeglenew.com/privacy' },
   robots: { index: true, follow: true },
 };
@@ -19,12 +19,12 @@ export default function PrivacyPage() {
             ← Back to OmegleNew
           </Link>
           <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Privacy Policy</h1>
-          <p className="text-gray-500 text-sm">Last updated: January 2026</p>
+          <p className="text-gray-500 text-sm">Last updated: May 2026</p>
         </div>
 
-        <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-8">
-          <p className="text-green-700 font-semibold text-sm">
-            ✓ OmegleNew does not require registration or personal information. Your chats are not stored.
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8">
+          <p className="text-blue-700 font-semibold text-sm">
+            OmegleNew does not require registration. We collect only what is necessary to operate the service safely.
           </p>
         </div>
 
@@ -34,9 +34,9 @@ export default function PrivacyPage() {
             <p>OmegleNew does not collect, store, or process:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1 text-sm">
               <li>Your name, email address, or any personal identification</li>
-              <li>Your chat messages (they are not stored on our servers)</li>
               <li>Phone numbers or social media accounts</li>
               <li>Payment information (our service is free)</li>
+              <li>Account credentials (no registration required)</li>
             </ul>
           </section>
 
@@ -45,6 +45,7 @@ export default function PrivacyPage() {
             <p>For security, legal compliance, and platform improvement, we may collect:</p>
             <ul className="list-disc pl-6 mt-2 space-y-1 text-sm">
               <li><strong>IP Address:</strong> Used for security (rate limiting, ban enforcement) and approximate geolocation for legal compliance.</li>
+              <li><strong>Chat Session Data:</strong> Message content and timestamps, stored temporarily for moderation and safety purposes.</li>
               <li><strong>Browser/Device Information:</strong> General browser type and device type for optimizing performance.</li>
               <li><strong>Usage Data:</strong> Anonymous analytics such as active user count and session duration (no personal identifiers).</li>
               <li><strong>Report Logs:</strong> When you report a user, the report details and associated IPs are logged for moderation purposes.</li>
@@ -74,9 +75,12 @@ export default function PrivacyPage() {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">5. Chat Privacy</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-3">5. Chat Data</h2>
             <p>
-              Chat messages are transmitted in real-time and are <strong>not recorded or stored</strong> on our servers. Once a chat session ends, the messages are gone. However, please be aware that the person you are chatting with may screenshot or record the conversation — never share sensitive personal information with strangers.
+              To improve platform safety and quality, chat session data (including message text, timestamps, and IP address) may be stored on our servers for a limited period. This data is used solely for moderation, abuse prevention, and service improvement — it is never sold or shared with third parties for marketing purposes.
+            </p>
+            <p className="mt-3 text-sm text-gray-500">
+              Never share sensitive personal information such as your full name, home address, financial details, or passwords with strangers in chat.
             </p>
           </section>
 
@@ -90,21 +94,21 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-3">7. Children&apos;s Privacy (COPPA)</h2>
             <p>
-              OmegleNew is strictly for users 18 years and older. We do not knowingly collect information from minors. If we discover a minor has accessed our platform, we will immediately terminate their access. If you believe a minor is using our service, please report it immediately.
+              OmegleNew is intended for users 13 years and older. We do not knowingly collect personal information from children under 13. If we discover that a child under 13 has accessed our platform, we will immediately terminate their access and delete any collected data. If you believe a child under 13 is using our service, please contact us immediately.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-3">8. Data Retention</h2>
             <p>
-              Since we do not collect personal data, there is nothing to delete. IP address logs used for ban enforcement are retained for 90 days and then automatically purged. Report logs may be retained for up to 12 months for moderation purposes.
+              Chat session logs are retained for up to 90 days for moderation and safety purposes, after which they are purged. IP address logs used for ban enforcement are retained for 90 days. Report logs may be retained for up to 12 months for moderation purposes.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-gray-900 mb-3">9. Your Rights</h2>
             <p>
-              Since we do not store personal information tied to identifiable individuals, most data rights (access, deletion, portability) are not applicable. If you have concerns about data collected via your IP address, contact us and we will assist.
+              We do not link stored data to identifiable individuals (no accounts or names). If you have concerns about data collected — such as your IP address or chat session logs — contact us and we will assist with any applicable data requests.
             </p>
           </section>
 
