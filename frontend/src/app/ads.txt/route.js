@@ -1,0 +1,5 @@
+export function GET() {
+  return new Response('google.com, ca-pub-9621487106450027, DIRECT, f08c47fec0942fa0\n', {
+    headers: { 'Content-Type': 'text/plain' },
+  });
+}

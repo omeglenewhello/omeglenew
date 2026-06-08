@@ -2,7 +2,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useSocket } from '@/hooks/useSocket';
 import ReportModal from './ReportModal';
-import AdBanner from './AdBanner';
 
 const INTERESTS_OPTIONS = [
   'Music', 'Movies', 'Gaming', 'Sports', 'Travel',
@@ -166,13 +165,6 @@ export default function ChatInterface({ onExit }) {
                   <p className="text-red-600 font-medium text-sm">Stranger disconnected.</p>
                   <p className="text-red-500 text-xs mt-1">Find a new person below.</p>
                 </div>
-                {/* Ad shown between chats — high dwell time spot */}
-                <AdBanner
-                  slot="5839201746"
-                  format="auto"
-                  responsive={true}
-                  className="w-full rounded-xl overflow-hidden"
-                />
               </div>
             )}
 
@@ -257,15 +249,6 @@ export default function ChatInterface({ onExit }) {
               </button>
             </div>
 
-            {/* Ad below setup card — visible before chat starts */}
-            <div className="mt-4 w-full">
-              <AdBanner
-                slot="2948371650"
-                format="auto"
-                responsive={true}
-                className="w-full rounded-xl overflow-hidden"
-              />
-            </div>
           </div>
         </div>
       ) : (
@@ -291,17 +274,6 @@ export default function ChatInterface({ onExit }) {
         </div>
       )}
 
-      {/* ── Ad Banner — sticky above input, visible during search + chat ── */}
-      {!isIdle && (
-        <div className="flex-shrink-0 bg-white border-t border-gray-100 px-3 py-1.5">
-          <AdBanner
-            slot="7361048295"
-            format="auto"
-            responsive={true}
-            className="w-full"
-          />
-        </div>
-      )}
 
       {/* ── Bottom Input Area ─────────────────────────────────────────────── */}
       {!isIdle && (

@@ -254,7 +254,7 @@ const BENTO = [
   {
     icon: '🔒',
     title: 'Private by Default',
-    desc: 'Messages are never stored. Once the chat ends, it\'s gone. No logs, no trace.',
+    desc: 'No account, no email required. Your identity stays anonymous throughout every conversation.',
   },
   {
     icon: '🎯',
@@ -301,8 +301,8 @@ const SAFETY = [
   },
   {
     icon: '🔐',
-    title: 'No Data Stored',
-    desc: 'Chat messages are never logged on our servers. Complete privacy is built into the architecture.',
+    title: 'No Registration',
+    desc: 'Zero personal data collected. No name, no email, no account — just open the site and start talking.',
   },
   {
     icon: '👮',
@@ -330,7 +330,7 @@ const FAQS = [
   },
   {
     q: 'Is my chat private?',
-    a: 'Yes. Messages are not stored on our servers. No personal information is required. Once a chat ends, it is gone.',
+    a: 'Yes. No account or personal information is required to chat. You are completely anonymous — just a stranger talking to another stranger.',
   },
   {
     q: 'Can I choose who I talk to?',
